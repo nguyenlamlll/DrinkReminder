@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.letrannguyenlam.MainController">
-   <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   <HBox fx:id="hbox" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
          <VBox fx:id="drawerVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="80.0" spacing="20.0">
             <children>
@@ -22,32 +23,33 @@
                 <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="368.0" prefWidth="108.0" />
             </children>
          </VBox>
-         <AnchorPane fx:id="root" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
+         <AnchorPane fx:id="root" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #008ECC;" HBox.hgrow="ALWAYS">
             <children>
                <VBox alignment="CENTER" layoutX="912.0" layoutY="182.0" prefHeight="196.0" prefWidth="83.0" spacing="10.0" AnchorPane.bottomAnchor="182.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="182.0">
                   <children>
-                     <Button mnemonicParsing="false" text="+ 250 ml">
+                     <JFXButton fx:id="button250" buttonType="RAISED" onMouseClicked="#button250Clicked" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+250 ml" wrapText="true">
                         <font>
-                           <Font size="15.0" />
+                           <Font size="16.0" />
                         </font>
-                     </Button>
-                     <Button mnemonicParsing="false" text="+ 350 ml">
+                     </JFXButton>
+                     <JFXButton buttonType="RAISED" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+350 ml" wrapText="true">
                         <font>
-                           <Font size="15.0" />
+                           <Font size="16.0" />
                         </font>
-                     </Button>
-                     <Button mnemonicParsing="false" text="+ 500 ml">
+                     </JFXButton>
+                     <JFXButton buttonType="RAISED" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+500 ml" wrapText="true">
                         <font>
-                           <Font size="15.0" />
+                           <Font size="16.0" />
                         </font>
-                     </Button>
-                     <Button mnemonicParsing="false" text="+ 1 litter">
+                     </JFXButton>
+                     <JFXButton buttonType="RAISED" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+ 1 litter" wrapText="true">
                         <font>
-                           <Font size="15.0" />
+                           <Font size="16.0" />
                         </font>
-                     </Button>
+                     </JFXButton>
                   </children>
                </VBox>
+               <JFXProgressBar progress="0.5" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="250.0" />
             </children>
          </AnchorPane>
       </children>
