@@ -3,10 +3,12 @@ package com.letrannguyenlam;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -27,6 +29,11 @@ public class MainController implements Initializable{
     @FXML
     private VBox drawerVbox;
 
+    @FXML
+    private ProgressBar waterBar;
+
+    private WaterIntake waterIntakeCalculator = new WaterIntake();
+    private double waterIntakeAmount;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,7 +67,10 @@ public class MainController implements Initializable{
     }
 
     public void button250Clicked(MouseEvent mouseEvent) {
+        waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(70, 22, 30);
 
+        double newProgress = waterBar.getProgress() + (0.250/waterIntakeAmount);
+        waterBar.setProgress(newProgress);
     }
 
 //    private void loadSplashScreen() {
