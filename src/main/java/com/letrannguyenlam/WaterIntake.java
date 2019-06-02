@@ -1,6 +1,8 @@
+package com.letrannguyenlam;
+
 import java.util.Scanner;
 
-public class Main {
+public class WaterIntake {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -19,7 +21,7 @@ public class Main {
 		System.out.println("Time workout per day: ");
 		timeworkout = scan.nextInt();
 		
-		System.out.println("Water intake per day: " + calWaterIntake(weight, age, timeworkout) + " litre");
+		System.out.println("Water intake per day: " + calculateWaterIntake(weight, age, timeworkout) + " litre");
 	}
 	
 	public static double kiloToPounds (double kilo)
@@ -27,7 +29,7 @@ public class Main {
 		return kilo*2.20462262185;
 	}
 	
-	public static double calWaterIntake (double weight, int age, int timeworkout)
+	public static double calculateWaterIntake(double weight, int age, int timeworkout)
 	{
 		double result;
 		
