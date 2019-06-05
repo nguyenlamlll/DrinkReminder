@@ -2,7 +2,7 @@
 
 .progress-bar { -fx-box-border: goldenrod; }
 
-.green-bar  { -fx-accent: green;  }
+.green-bar  { -fx-accent: #42f4c5; }
 .yellow-bar { -fx-accent: yellow; }
 .orange-bar { -fx-accent: orange; }
 .red-bar    { -fx-accent: red;    }

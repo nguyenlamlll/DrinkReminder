@@ -9,6 +9,7 @@ import com.letrannguyenlam.services.TrayService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -48,6 +49,7 @@ public class MainController implements Initializable{
             SidePanelController controller = loader.getController();
 
             drawer.setSidePane(box);
+            bindEventToBox(box);
         } catch (IOException ex) {
             //Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,6 +68,25 @@ public class MainController implements Initializable{
                 drawer.open();
             }
         });
+    }
+
+    private void bindEventToBox(VBox box){
+        for (Node node : box.getChildren()) {
+            node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                switch (node.getId()){
+                    case "home_btn" :
+                    {
+                        TrayService trayService = new TrayService("Test", "Clicked in home button", TrayIcon.MessageType.WARNING);
+                        try {
+                            trayService.displayTray();
+                        }
+                        catch (AWTException ex) {
+                            // TODO: Handle the exception
+                        }
+                    }
+                }
+            });
+        }
     }
 
     public void button250Clicked(MouseEvent mouseEvent) {
