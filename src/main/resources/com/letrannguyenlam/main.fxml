@@ -50,6 +50,7 @@
                   </children>
                </VBox>
                <ProgressBar fx:id="waterBar" prefWidth="200.0" progress="0.0" styleClass="green-bar" stylesheets="@css/progress.css" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="250.0" />
+               <JFXButton fx:id="createNotiButton" layoutX="1020.0" layoutY="548.0" onMouseClicked="#createNotification" text="Create Notification" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
             </children>
          </AnchorPane>
       </children>

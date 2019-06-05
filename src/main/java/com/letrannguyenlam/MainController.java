@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.letrannguyenlam.services.TrayService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -71,6 +73,16 @@ public class MainController implements Initializable{
 
         double newProgress = waterBar.getProgress() + (0.250/waterIntakeAmount);
         waterBar.setProgress(newProgress);
+    }
+
+    public void createNotification(MouseEvent mouseEvent) {
+        TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
+        try {
+            trayService.displayTray();
+        }
+        catch (AWTException ex) {
+            // TODO: Handle the exception
+        }
     }
 
 //    private void loadSplashScreen() {
