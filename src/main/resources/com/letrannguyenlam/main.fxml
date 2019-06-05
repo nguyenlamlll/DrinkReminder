@@ -23,7 +23,7 @@
                 <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" prefHeight="368.0" prefWidth="108.0" />
             </children>
          </VBox>
-         <AnchorPane  prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #008ECC;" HBox.hgrow="ALWAYS">
+         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #008ECC;" HBox.hgrow="ALWAYS">
             <children>
                <VBox alignment="CENTER" layoutX="912.0" layoutY="182.0" prefHeight="196.0" prefWidth="83.0" spacing="10.0" AnchorPane.bottomAnchor="182.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="182.0">
                   <children>
@@ -49,7 +49,7 @@
                      </JFXButton>
                   </children>
                </VBox>
-               <ProgressBar fx:id="waterBar" prefWidth="200.0" progress="0.0" styleClass="green-bar" stylesheets="@css/progress.css" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="250.0" />
+               <ProgressBar fx:id="waterBar" prefWidth="200.0" progress="0.0" styleClass="green-bar" stylesheets="@css/progress.css" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="300.0" />
                <JFXButton fx:id="createNotiButton" layoutX="1020.0" layoutY="548.0" onMouseClicked="#createNotification" text="Create Notification" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
             </children>
          </AnchorPane>
