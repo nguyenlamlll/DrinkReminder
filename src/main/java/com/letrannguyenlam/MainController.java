@@ -5,9 +5,9 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.letrannguyenlam.services.TrayIconDemo;
 import com.letrannguyenlam.services.TrayService;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +19,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.*;
@@ -27,7 +31,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-public class MainController implements Initializable{
+public class MainController implements Initializable {
     @FXML
     private AnchorPane root;
 
@@ -49,6 +53,7 @@ public class MainController implements Initializable{
 //            loadSplashScreen();
         }
         loadHome();
+        concac();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sidepanel.fxml"));
@@ -77,7 +82,7 @@ public class MainController implements Initializable{
         });
     }
 
-    private void loadHome(){
+    private void loadHome() {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("menuitems/home.fxml"));
             content_pan.getChildren().setAll(pane);
@@ -86,16 +91,16 @@ public class MainController implements Initializable{
         }
     }
 
-    private void bindEventToBox(VBox box){
+    private void bindEventToBox(VBox box) {
         for (Node node : box.getChildren()) {
             node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-                switch (node.getId()){
-                    case "home_btn" :
+                switch (node.getId()) {
+                    case "home_btn":
                         loadHome();
                         break;
-                    case "statistic_btn" :
+                    case "statistic_btn":
                         break;
-                    case "setting_btn" :
+                    case "setting_btn":
                         break;
                 }
             });
@@ -153,6 +158,68 @@ public class MainController implements Initializable{
 
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void concac() {
+        if (SystemTray.isSupported()) {
+            // get the SystemTray instance
+            SystemTray tray = SystemTray.getSystemTray();
+            // load an image
+            Image image = Toolkit.getDefaultToolkit().getImage("trayicon.png");
+            // create a action listener to listen for default action executed on the tray icon
+            ActionListener listener = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            };
+            MenuItem exitItem = new MenuItem("Exit");
+
+            // create a popup menu
+            PopupMenu popup = new PopupMenu();
+            // create menu item for the default action
+            MenuItem defaultItem = new MenuItem("Pop up for Drink Reminder");
+            defaultItem.addActionListener(listener);
+            popup.add(defaultItem);
+            popup.add(exitItem);
+            /// ... add other items
+            // construct a TrayIcon
+            final TrayIcon trayIcon = new TrayIcon(image, "Tray Demo", popup);
+            // set the TrayIcon properties
+            trayIcon.addActionListener(listener);
+            exitItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    tray.remove(trayIcon);
+                    System.exit(0);
+                }
+            });
+
+            try {
+                tray.add(trayIcon);
+            } catch (AWTException e) {
+                System.err.println(e);
+            }
+            // ...
+        } else {
+
+        }
+// ...
+// some time later
+// the application state has changed - update the image
+//        if (trayIcon != null) {
+//            trayIcon.setImage(updatedImage);
+//        }
+    }
+
+    protected static Image createImage(String path, String description) {
+        URL imageURL = TrayIconDemo.class.getResource(path);
+
+        if (imageURL == null) {
+            System.err.println("Resource not found: " + path);
+            return null;
+        } else {
+            return (new ImageIcon(imageURL, description)).getImage();
         }
     }
 
