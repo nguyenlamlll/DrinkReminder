@@ -15,6 +15,14 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
+    testCompile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '7.2.2.jre11'
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
+
+
     compile 'com.jfoenix:jfoenix:9.0.8'
 }
 

@@ -21,7 +21,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("main.fxml"));
+            root = FXMLLoader.load(getClass().getResource("statistics.fxml"));
+            ODBC_Helper db = new ODBC_Helper();
+            db.connect();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
