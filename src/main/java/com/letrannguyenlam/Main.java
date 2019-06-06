@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
+
+    public static Boolean isSplashLoaded = false;
+
     public static void main(String[] args) {
         launch(args);
     }
