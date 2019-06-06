@@ -5,8 +5,10 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import com.letrannguyenlam.DBConnection.ODBC_Helper;
 import com.letrannguyenlam.services.TrayService;
 import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +33,9 @@ public class MainController implements Initializable{
     private AnchorPane root;
 
     @FXML
+    private AnchorPane content_pan;
+
+    @FXML
     private JFXDrawer drawer;
 
     @FXML
@@ -39,17 +44,13 @@ public class MainController implements Initializable{
     @FXML
     private VBox drawerVbox;
 
-    @FXML
-    private ProgressBar waterBar;
-
-    private WaterIntake waterIntakeCalculator = new WaterIntake();
-    private double waterIntakeAmount;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (!Main.isSplashLoaded) {
-            loadSplashScreen();
+//            loadSplashScreen();
         }
+        loadHome();
+        ODBC_Helper.connect();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sidepanel.fxml"));
             VBox box = loader.load();
@@ -77,41 +78,47 @@ public class MainController implements Initializable{
         });
     }
 
+    private void loadHome(){
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("menuitems/home.fxml"));
+            content_pan.getChildren().setAll(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void bindEventToBox(VBox box){
         for (Node node : box.getChildren()) {
             node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
                 switch (node.getId()){
                     case "home_btn" :
-                    {
-                        TrayService trayService = new TrayService("Test", "Clicked in home button", TrayIcon.MessageType.WARNING);
-                        try {
-                            trayService.displayTray();
-                        }
-                        catch (AWTException ex) {
-                            // TODO: Handle the exception
-                        }
-                    }
+                        loadHome();
+                        break;
+                    case "statistic_btn" :
+                        break;
+                    case "setting_btn" :
+                        break;
                 }
             });
         }
     }
 
-    public void button250Clicked(MouseEvent mouseEvent) {
-        waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(70, 22, 30);
+//    public void button250Clicked(MouseEvent mouseEvent) {
+//        waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(70, 22, 30);
+//
+//        double newProgress = waterBar.getProgress() + (0.250/waterIntakeAmount);
+//        waterBar.setProgress(newProgress);
+//    }
 
-        double newProgress = waterBar.getProgress() + (0.250/waterIntakeAmount);
-        waterBar.setProgress(newProgress);
-    }
-
-    public void createNotification(MouseEvent mouseEvent) {
-        TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
-        try {
-            trayService.displayTray();
-        }
-        catch (AWTException ex) {
-            // TODO: Handle the exception
-        }
-    }
+//    public void createNotification(MouseEvent mouseEvent) {
+//        TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
+//        try {
+//            trayService.displayTray();
+//        }
+//        catch (AWTException ex) {
+//            // TODO: Handle the exception
+//        }
+//    }
 
     private void loadSplashScreen() {
         try {
