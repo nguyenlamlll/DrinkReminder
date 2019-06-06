@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
-import com.letrannguyenlam.DBConnection.ODBC_Helper;
 import com.letrannguyenlam.services.TrayService;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
@@ -50,7 +49,7 @@ public class MainController implements Initializable{
 //            loadSplashScreen();
         }
         loadHome();
-        ODBC_Helper.connect();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sidepanel.fxml"));
             VBox box = loader.load();
