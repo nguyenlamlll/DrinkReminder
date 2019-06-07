@@ -1,34 +1,28 @@
 package com.letrannguyenlam;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
-import com.letrannguyenlam.services.TrayIconDemo;
 import com.letrannguyenlam.services.TrayService;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainController implements Initializable {
@@ -53,7 +47,7 @@ public class MainController implements Initializable {
 //            loadSplashScreen();
         }
         loadHome();
-        concac();
+//        concac();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sidepanel.fxml"));
@@ -107,23 +101,6 @@ public class MainController implements Initializable {
         }
     }
 
-//    public void button250Clicked(MouseEvent mouseEvent) {
-//        waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(70, 22, 30);
-//
-//        double newProgress = waterBar.getProgress() + (0.250/waterIntakeAmount);
-//        waterBar.setProgress(newProgress);
-//    }
-
-//    public void createNotification(MouseEvent mouseEvent) {
-//        TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
-//        try {
-//            trayService.displayTray();
-//        }
-//        catch (AWTException ex) {
-//            // TODO: Handle the exception
-//        }
-//    }
-
     private void loadSplashScreen() {
         try {
             Main.isSplashLoaded = true;
@@ -161,66 +138,6 @@ public class MainController implements Initializable {
         }
     }
 
-    private void concac() {
-        if (SystemTray.isSupported()) {
-            // get the SystemTray instance
-            SystemTray tray = SystemTray.getSystemTray();
-            // load an image
-            Image image = Toolkit.getDefaultToolkit().getImage("trayicon.png");
-            // create a action listener to listen for default action executed on the tray icon
-            ActionListener listener = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
 
-                }
-            };
-            MenuItem exitItem = new MenuItem("Exit");
-
-            // create a popup menu
-            PopupMenu popup = new PopupMenu();
-            // create menu item for the default action
-            MenuItem defaultItem = new MenuItem("Pop up for Drink Reminder");
-            defaultItem.addActionListener(listener);
-            popup.add(defaultItem);
-            popup.add(exitItem);
-            /// ... add other items
-            // construct a TrayIcon
-            final TrayIcon trayIcon = new TrayIcon(image, "Tray Demo", popup);
-            // set the TrayIcon properties
-            trayIcon.addActionListener(listener);
-            exitItem.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    tray.remove(trayIcon);
-                    System.exit(0);
-                }
-            });
-
-            try {
-                tray.add(trayIcon);
-            } catch (AWTException e) {
-                System.err.println(e);
-            }
-            // ...
-        } else {
-
-        }
-// ...
-// some time later
-// the application state has changed - update the image
-//        if (trayIcon != null) {
-//            trayIcon.setImage(updatedImage);
-//        }
-    }
-
-    protected static Image createImage(String path, String description) {
-        URL imageURL = TrayIconDemo.class.getResource(path);
-
-        if (imageURL == null) {
-            System.err.println("Resource not found: " + path);
-            return null;
-        } else {
-            return (new ImageIcon(imageURL, description)).getImage();
-        }
-    }
 
 }
