@@ -38,7 +38,6 @@ public class HomeController implements Initializable {
 
     public void createNotification(MouseEvent mouseEvent) {
         TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
-        trayService.setSystemTray(Main.tray);
         try {
             trayService.displayTray();
         }
