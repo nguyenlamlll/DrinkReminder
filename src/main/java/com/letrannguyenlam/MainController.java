@@ -3,9 +3,7 @@ package com.letrannguyenlam;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
-import com.letrannguyenlam.services.TrayService;
 import javafx.animation.FadeTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,9 +14,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,7 +42,6 @@ public class MainController implements Initializable {
 //            loadSplashScreen();
         }
         loadHome();
-//        concac();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sidepanel.fxml"));
