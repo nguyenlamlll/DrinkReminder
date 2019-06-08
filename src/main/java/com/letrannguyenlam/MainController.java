@@ -1,33 +1,31 @@
 package com.letrannguyenlam;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.letrannguyenlam.services.TrayService;
 import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MainController implements Initializable{
+public class MainController implements Initializable {
     @FXML
     private AnchorPane root;
 
@@ -49,6 +47,7 @@ public class MainController implements Initializable{
 //            loadSplashScreen();
         }
         loadHome();
+//        concac();
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sidepanel.fxml"));
@@ -77,7 +76,7 @@ public class MainController implements Initializable{
         });
     }
 
-    private void loadHome(){
+    private void loadHome() {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("menuitems/home.fxml"));
             content_pan.getChildren().setAll(pane);
@@ -86,38 +85,21 @@ public class MainController implements Initializable{
         }
     }
 
-    private void bindEventToBox(VBox box){
+    private void bindEventToBox(VBox box) {
         for (Node node : box.getChildren()) {
             node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
-                switch (node.getId()){
-                    case "home_btn" :
+                switch (node.getId()) {
+                    case "home_btn":
                         loadHome();
                         break;
-                    case "statistic_btn" :
+                    case "statistic_btn":
                         break;
-                    case "setting_btn" :
+                    case "setting_btn":
                         break;
                 }
             });
         }
     }
-
-//    public void button250Clicked(MouseEvent mouseEvent) {
-//        waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(70, 22, 30);
-//
-//        double newProgress = waterBar.getProgress() + (0.250/waterIntakeAmount);
-//        waterBar.setProgress(newProgress);
-//    }
-
-//    public void createNotification(MouseEvent mouseEvent) {
-//        TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
-//        try {
-//            trayService.displayTray();
-//        }
-//        catch (AWTException ex) {
-//            // TODO: Handle the exception
-//        }
-//    }
 
     private void loadSplashScreen() {
         try {
@@ -155,5 +137,7 @@ public class MainController implements Initializable{
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 
 }
