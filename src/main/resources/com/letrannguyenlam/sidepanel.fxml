@@ -28,7 +28,7 @@
             <Insets top="20.0" />
          </padding>
       </JFXButton>
-      <JFXButton fx:id="statistic_btn" prefHeight="92.0" prefWidth="181.0" stylesheets="@css/sidepanel.css" text="Statistic" textFill="WHITE">
+      <JFXButton fx:id="statistics_btn" prefHeight="92.0" prefWidth="181.0" stylesheets="@css/sidepanel.css" text="Statistic" textFill="WHITE">
          <graphic>
                 <ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true">
                     <image>

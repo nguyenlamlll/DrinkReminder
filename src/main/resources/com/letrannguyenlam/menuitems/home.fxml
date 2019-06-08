@@ -11,22 +11,29 @@
 <children>
     <VBox alignment="CENTER" layoutX="912.0" layoutY="182.0" prefHeight="196.0" prefWidth="83.0" spacing="10.0" AnchorPane.bottomAnchor="182.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="182.0">
         <children>
-            <JFXButton fx:id="button250" buttonType="RAISED" onMouseClicked="#button250Clicked" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+250 ml" wrapText="true">
+            <JFXButton fx:id="button50" buttonType="RAISED"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+50 ml" wrapText="true">
                 <font>
                     <Font size="16.0" />
                 </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+350 ml" wrapText="true">
+
+            <JFXButton fx:id="button100" buttonType="RAISED"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+100 ml" wrapText="true">
                 <font>
                     <Font size="16.0" />
                 </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+500 ml" wrapText="true">
+
+            <JFXButton fx:id="button250" buttonType="RAISED" onMouseClicked="#button250Clicked"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+250 ml" wrapText="true">
                 <font>
                     <Font size="16.0" />
                 </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+ 1 litter" wrapText="true">
+
+            <JFXButton fx:id="button350" buttonType="RAISED"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+350ml" wrapText="true">
                 <font>
                     <Font size="16.0" />
                 </font>

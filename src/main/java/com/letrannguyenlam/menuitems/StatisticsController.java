@@ -1,4 +1,4 @@
-package com.letrannguyenlam;
+package com.letrannguyenlam.menuitems;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
