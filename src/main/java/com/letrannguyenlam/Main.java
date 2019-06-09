@@ -11,10 +11,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.awt.*;
@@ -28,6 +28,8 @@ public class Main extends Application {
     public static Boolean isSplashLoaded = false;
 
     public Boolean firstLoaded = true;
+
+    private double xOffset = 0, yOffset = 0;
 
     public static void main(String[] args) {
         launch(args);
@@ -75,15 +77,7 @@ public class Main extends Application {
         minimizeToSystemTray(primaryStage);
 
         if (firstLoaded) {
-            final Stage dialog = new Stage();
-            dialog.initModality(Modality.APPLICATION_MODAL);
-            dialog.initOwner(primaryStage);
-            VBox dialogVbox = new VBox(20);
-            dialogVbox.getChildren().add(new Text("This is a Dialog"));
-            Scene dialogScene = new Scene(dialogVbox, 300, 200);
-            dialog.setScene(dialogScene);
-            dialog.show();
-            firstLoaded = false;
+            openMeasureForm(primaryStage);
         }
     }
 
@@ -125,6 +119,41 @@ public class Main extends Application {
         } else {
 
         }
+    }
+
+    private void openMeasureForm(Stage primaryStage) {
+        Stage dialog = new Stage();
+        Parent popupTheme = null;
+        try {
+            popupTheme = FXMLLoader.load(getClass().getResource("measurementform.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (popupTheme != null) {
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initStyle(StageStyle.UNDECORATED);
+
+            popupTheme.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
+
+            popupTheme.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    dialog.setX(event.getScreenX() - xOffset);
+                    dialog.setY(event.getScreenY() - yOffset);
+                }
+            });
+
+            dialog.setScene(new Scene(popupTheme));
+            dialog.initOwner(primaryStage);
+            dialog.showAndWait();
+        }
+        firstLoaded = false;
     }
 }
 
