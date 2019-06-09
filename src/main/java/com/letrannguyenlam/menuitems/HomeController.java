@@ -28,6 +28,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // TODO: Placing this here create a notification each time Home page is loaded.
         timerNotification();
     }
 

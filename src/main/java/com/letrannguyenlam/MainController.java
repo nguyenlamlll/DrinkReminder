@@ -36,6 +36,9 @@ public class MainController implements Initializable {
     @FXML
     private VBox drawerVbox;
 
+    @FXML
+    private VBox iconOnlyVBox;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (!Main.isSplashLoaded) {
@@ -50,6 +53,7 @@ public class MainController implements Initializable {
 
             drawer.setSidePane(box);
             bindEventToBox(box);
+            bindEventToBox(iconOnlyVBox);
         } catch (IOException ex) {
             //Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,9 +67,11 @@ public class MainController implements Initializable {
             if (drawer.isOpened()) {
                 drawerVbox.setPrefWidth(80);
                 drawer.close();
+                iconOnlyVBox.setVisible(true);
             } else {
                 drawerVbox.setPrefWidth(200);
                 drawer.open();
+                iconOnlyVBox.setVisible(false);
             }
         });
     }
@@ -92,13 +98,13 @@ public class MainController implements Initializable {
         for (Node node : box.getChildren()) {
             node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
                 switch (node.getId()) {
-                    case "home_btn":
+                    case "home_btn": case "homeIconButton":
                         loadHome();
                         break;
-                    case "statistics_btn":
+                    case "statistics_btn": case "statisticsIconButton":
                         loadStatistics();
                         break;
-                    case "setting_btn":
+                    case "setting_btn": case "settingsIconButton":
                         break;
                 }
             });
