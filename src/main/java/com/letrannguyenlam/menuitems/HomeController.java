@@ -15,6 +15,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeController implements Initializable {
 
@@ -26,7 +28,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        timerNotification();
     }
 
     public void button250Clicked(MouseEvent mouseEvent) {
@@ -36,7 +38,7 @@ public class HomeController implements Initializable {
         waterBar.setProgress(newProgress);
     }
 
-    public void createNotification(MouseEvent mouseEvent) {
+    public void createNotification() {
         TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
         try {
             trayService.displayTray();
@@ -44,5 +46,19 @@ public class HomeController implements Initializable {
         catch (AWTException ex) {
             // TODO: Handle the exception
         }
+    }
+
+    public void timerNotification() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                createNotification();
+            }
+        };
+
+        //how long between the reminder
+        long delay = 1800000L;
+        Timer timer = new Timer("Timer");
+        timer.schedule(timerTask, 0, delay);
     }
 }
