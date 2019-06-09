@@ -88,4 +88,30 @@ public class UserRepository {
             throw new RuntimeException();
         }
     }
+
+    public User getUser(int userId) {
+        try (Connection connection = database.createSQLConnection()) {
+            String query = "SELECT * FROM [User] WHERE Id = ?";
+            LinkedList<User> users = new LinkedList<User>();
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, userId);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    User user = new User(
+                            resultSet.getInt("Id"),
+                            resultSet.getString("Username"),
+                            resultSet.getString("Password"),
+                            resultSet.getString("Name"),
+                            resultSet.getDate("DateOfBirth"),
+                            resultSet.getDouble("Weight")
+                    );
+                    users.add(user);
+                }
+            }
+            return users.getFirst();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
 }

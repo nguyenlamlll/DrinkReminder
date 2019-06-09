@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="178.0" spacing="40.0" style="-fx-background-color: #3498db;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.letrannguyenlam.SidePanelController">
+<VBox prefHeight="400.0" prefWidth="178.0" spacing="40.0" style="-fx-background-color: #2171a9;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.letrannguyenlam.SidePanelController">
     <children>
       <JFXButton fx:id="home_btn" prefHeight="100.0" prefWidth="180.0" stylesheets="@css/sidepanel.css" text="Home" textFill="WHITE">
          <graphic>

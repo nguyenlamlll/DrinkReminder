@@ -1,19 +1,25 @@
 package com.letrannguyenlam.repositories.models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DrinkRecord {
     public DrinkRecord() {
     }
 
-    public DrinkRecord(int id, int userId, double amount, Date timeTaken) {
+    public DrinkRecord(int userId, double amount) {
+        this.userId = userId;
+        this.amount = amount;
+    }
+
+    public DrinkRecord(int id, int userId, double amount, Timestamp timeTaken) {
         Id = id;
         this.userId = userId;
         this.amount = amount;
         this.timeTaken = timeTaken;
     }
 
-    public DrinkRecord(int userId, double amount, Date timeTaken) {
+    public DrinkRecord(int userId, double amount, Timestamp timeTaken) {
         this.userId = userId;
         this.amount = amount;
         this.timeTaken = timeTaken;
@@ -46,12 +52,12 @@ public class DrinkRecord {
         this.amount = amount;
     }
 
-    private Date timeTaken;
-    public Date getTimeTaken() {
+    private Timestamp timeTaken;
+    public Timestamp getTimeTaken() {
         return timeTaken;
     }
 
-    public void setTimeTaken(Date timeTaken) {
+    public void setTimeTaken(Timestamp timeTaken) {
         this.timeTaken = timeTaken;
     }
 }

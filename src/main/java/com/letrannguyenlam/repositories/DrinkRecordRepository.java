@@ -22,7 +22,7 @@ public class DrinkRecordRepository {
                     DrinkRecord record = new DrinkRecord();
                     record.setId(resultSet.getInt("Id"));
                     record.setAmount(resultSet.getDouble("Amount"));
-                    record.setTimeTaken(resultSet.getDate("TimeTaken"));
+                    record.setTimeTaken(resultSet.getTimestamp("TimeTaken"));
                     record.setUserId(resultSet.getInt("UserId"));
 
                     drinkRecords.add(record);
@@ -47,7 +47,7 @@ public class DrinkRecordRepository {
                             resultSet.getInt("Id"),
                             resultSet.getInt("UserId"),
                             resultSet.getDouble("Amount"),
-                            resultSet.getDate("TimeTaken")
+                            resultSet.getTimestamp("TimeTaken")
                     );
                     drinkRecords.add(record);
                 }
@@ -67,7 +67,7 @@ public class DrinkRecordRepository {
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, record.getUserId());
                 statement.setDouble(2, record.getAmount());
-                statement.setDate(3, record.getTimeTaken());
+                statement.setTimestamp(3, record.getTimeTaken());
 
                 int returnToken = statement.executeUpdate();
                 int i = 2;
