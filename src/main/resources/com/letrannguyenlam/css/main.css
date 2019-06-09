@@ -1,0 +1,6 @@
+.jfx-hamburger StackPane {
+    -fx-pref-width: 40px;
+    -fx-pref-height: 7px;
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+}

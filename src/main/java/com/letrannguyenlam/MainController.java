@@ -1,33 +1,36 @@
 package com.letrannguyenlam;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.letrannguyenlam.services.TrayService;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MainController implements Initializable{
+public class MainController implements Initializable {
     @FXML
     private AnchorPane root;
+
+    @FXML
+    private AnchorPane content_pan;
 
     @FXML
     private JFXDrawer drawer;
@@ -38,23 +41,21 @@ public class MainController implements Initializable{
     @FXML
     private VBox drawerVbox;
 
-    @FXML
-    private ProgressBar waterBar;
-
-    private WaterIntake waterIntakeCalculator = new WaterIntake();
-    private double waterIntakeAmount;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (!Main.isSplashLoaded) {
-            loadSplashScreen();
+//            loadSplashScreen();
         }
+        loadHome();
+//        concac();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sidepanel.fxml"));
             VBox box = loader.load();
             SidePanelController controller = loader.getController();
 
             drawer.setSidePane(box);
+            bindEventToBox(box);
         } catch (IOException ex) {
             //Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,20 +76,38 @@ public class MainController implements Initializable{
         });
     }
 
-    public void button250Clicked(MouseEvent mouseEvent) {
-        waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(70, 22, 30);
-
-        double newProgress = waterBar.getProgress() + (0.250/waterIntakeAmount);
-        waterBar.setProgress(newProgress);
+    private void loadHome() {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("menuitems/home.fxml"));
+            content_pan.getChildren().setAll(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void createNotification(MouseEvent mouseEvent) {
-        TrayService trayService = new TrayService("Drink Reminder", "Hi there! It's time for water, don't you think?", TrayIcon.MessageType.NONE);
+    private void loadStatistics() {
         try {
-            trayService.displayTray();
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("menuitems/statistics.fxml"));
+            content_pan.getChildren().setAll(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (AWTException ex) {
-            // TODO: Handle the exception
+    }
+
+    private void bindEventToBox(VBox box) {
+        for (Node node : box.getChildren()) {
+            node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
+                switch (node.getId()) {
+                    case "home_btn":
+                        loadHome();
+                        break;
+                    case "statistics_btn":
+                        loadStatistics();
+                        break;
+                    case "setting_btn":
+                        break;
+                }
+            });
         }
     }
 
@@ -128,5 +147,7 @@ public class MainController implements Initializable{
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 
 }

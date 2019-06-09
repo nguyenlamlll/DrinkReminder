@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="home_pan" prefHeight="698.0" prefWidth="782.0" style="-fx-background-color: #3498db;" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.letrannguyenlam.menuitems.HomeController" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+<children>
+    <VBox alignment="CENTER" layoutX="912.0" layoutY="182.0" prefHeight="196.0" prefWidth="83.0" spacing="10.0" AnchorPane.bottomAnchor="182.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="182.0">
+        <children>
+            <JFXButton fx:id="button50" buttonType="RAISED"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+50 ml" wrapText="true">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+
+            <JFXButton fx:id="button100" buttonType="RAISED"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+100 ml" wrapText="true">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+
+            <JFXButton fx:id="button250" buttonType="RAISED" onMouseClicked="#button250Clicked"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+250 ml" wrapText="true">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+
+            <JFXButton fx:id="button350" buttonType="RAISED"
+                       ripplerFill="#bac2ff" style="-fx-background-color: white;" text="+350ml" wrapText="true">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </JFXButton>
+        </children>
+    </VBox>
+    <ProgressBar fx:id="waterBar" prefWidth="200.0" progress="0.0" styleClass="green-bar" stylesheets="@../css/progress.css" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="300.0" />
+    <JFXButton fx:id="createNotiButton" layoutX="1020.0" layoutY="548.0" onMouseClicked="#createNotification" text="Create Notification" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+</children>
+</AnchorPane>
