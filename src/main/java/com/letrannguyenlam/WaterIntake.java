@@ -1,7 +1,5 @@
 package com.letrannguyenlam;
 
-import java.util.Scanner;
-
 public class WaterIntake {
 
 //	public static void main(String[] args) {
@@ -46,4 +44,7 @@ public class WaterIntake {
 		return (result + (timeworkout/30*12))*0.02957;
 	}
 
+    public static class Setting {
+
+    }
 }
