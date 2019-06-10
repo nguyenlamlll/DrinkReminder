@@ -12,4 +12,10 @@ public class UserLogic {
     public User getUser(int userId) {
         return userRepository.getUser(userId);
     }
+
+    public void updateUser(int userId, double weight) {
+        var updatingUser = this.getUser(userId);
+        updatingUser.setWeight(weight);
+        userRepository.updateUser(updatingUser);
+    }
 }

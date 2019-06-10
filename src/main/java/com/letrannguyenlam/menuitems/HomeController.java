@@ -90,7 +90,7 @@ public class HomeController implements Initializable {
         double amountLeftValue = drinkRecordLogic.getAmountLeftOfToday(Main.currentSignedInUser);
         String amountLeft = String.format("%.3f", amountLeftValue);
         if (amountLeftValue > 0.0) {
-            homeLabel.setText("Hi " + name + ". Let's drink water!! " + amountLeft + " more liters to go.");
+            homeLabel.setText("Hi " + name + ". Let's drink water! You're doing well. " + amountLeft + " more liters to go.");
         } else {
             homeLabel.setText("Congrats!! You've met today's requirement. But it's always good to have some more.");
         }

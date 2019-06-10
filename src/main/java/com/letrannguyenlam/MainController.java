@@ -94,6 +94,15 @@ public class MainController implements Initializable {
         }
     }
 
+    private void loadSettings() {
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("menuitems/settings.fxml"));
+            content_pan.getChildren().setAll(pane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void bindEventToBox(VBox box) {
         for (Node node : box.getChildren()) {
             node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
@@ -105,6 +114,7 @@ public class MainController implements Initializable {
                         loadStatistics();
                         break;
                     case "setting_btn": case "settingsIconButton":
+                        loadSettings();
                         break;
                 }
             });

@@ -8,8 +8,8 @@ import com.letrannguyenlam.repositories.models.User;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DrinkRecordLogic {
     private DrinkRecordRepository drinkRecordRepository;
@@ -72,17 +72,66 @@ public class DrinkRecordLogic {
         today.setMinutes(0);
         today.setSeconds(0);
 
+        LinkedList<DrinkRecord> drinkRecordResult = new LinkedList<DrinkRecord>();
         for(int i = 0; i < drinkRecords.size(); i++) {
             java.util.Date timeTaken = new java.util.Date(drinkRecords.get(i).getTimeTaken().getTime());
-            if (timeTaken.getDay() != today.getDay() || timeTaken.getMonth() != today.getMonth() || timeTaken.getYear() != today.getYear()) {
-                drinkRecords.remove(i);
+            if (timeTaken.getDate() == today.getDate() && timeTaken.getMonth() == today.getMonth() && timeTaken.getYear() == today.getYear()) {
+                drinkRecordResult.add(drinkRecords.get(i));
             }
         }
 
         double currentSumAmmount = 0;
-        for(DrinkRecord record: drinkRecords) {
+        for(DrinkRecord record: drinkRecordResult) {
             currentSumAmmount += record.getAmount();
         }
         return currentSumAmmount;
+    }
+
+    public double getWaterAmountDrank(int userId, Date date) {
+        LinkedList<DrinkRecord> drinkRecords = drinkRecordRepository.getDrinkRecords(userId);
+
+        LinkedList<DrinkRecord> drinkRecordResult = new LinkedList<DrinkRecord>();
+        for(int i = 0; i < drinkRecords.size(); i++) {
+            java.util.Date timeTaken = new java.util.Date(drinkRecords.get(i).getTimeTaken().getTime());
+            if (timeTaken.getDate() == date.getDate() && timeTaken.getMonth() == date.getMonth() && timeTaken.getYear() == date.getYear()) {
+                drinkRecordResult.add(drinkRecords.get(i));
+            }
+        }
+
+        double amountDrank = 0;
+        for(DrinkRecord record: drinkRecordResult) {
+            amountDrank += record.getAmount();
+        }
+        return amountDrank;
+    }
+
+    public Map<String,Double> getStatisticsByDays(int userId) {
+        Map<String,Double> resultMap = new HashMap<String,Double>();
+
+        var allDrinkRecords = drinkRecordRepository.getDrinkRecords(userId);
+
+        for(DrinkRecord drinkRecord: allDrinkRecords) {
+            Date date = new Date(drinkRecord.getTimeTaken().getTime());
+            if (!resultMap.containsKey(date.toString())) {
+                resultMap.put(date.toString(), this.getWaterAmountDrank(userId, date));
+            }
+        }
+
+        return resultMap;
+    }
+
+    public Map<String,Double> getStatisticsByWeeks(int userId) {
+        Map<String,Double> resultMap = new HashMap<String,Double>();
+
+        var allDrinkRecords = drinkRecordRepository.getDrinkRecords(userId);
+
+        for(DrinkRecord drinkRecord: allDrinkRecords) {
+            Date date = new Date(drinkRecord.getTimeTaken().getTime());
+            if (!resultMap.containsKey(date.toString())) {
+                resultMap.put(date.toString(), this.getWaterAmountDrank(userId, date));
+            }
+        }
+
+        return resultMap;
     }
 }

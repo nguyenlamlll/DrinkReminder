@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3498db;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.letrannguyenlam.menuitems.SettingsController">
+   <children>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #3498db;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3498db;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox spacing="30.0" style="-fx-background-color: #3498db;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <VBox spacing="15.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal Metrics">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Personal metrics are used to calculate your suggested water intake amount and other daily tasks. Please remember to update these regurlarly." wrappingWidth="700.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                              <HBox prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Weight (kg):" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="weightTextField" prefHeight="28.0" prefWidth="173.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                              <HBox prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Height (cm):" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="heightTextField" prefHeight="28.0" prefWidth="173.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </JFXTextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BASELINE_LEFT" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <JFXButton fx:id="savePersonalMetricsButton" onMouseClicked="#onSavePersonalMetricsButtonClick" style="-fx-background-color: #d4d6d8;" text="Save">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Text fx:id="personalMetricsSaveStatus" fill="#2eff4b" strokeType="OUTSIDE" strokeWidth="0.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox spacing="15.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Reset">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Reset all of your current data. Please beware, this action cannot be undone.">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                              <JFXButton style="-fx-background-color: #d4d6d8;" text="Reset" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
