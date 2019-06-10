@@ -75,7 +75,7 @@ public class StatisticsController implements Initializable {
 //            series1.getData().add(new XYChart.Data<String, Double>(key, value));
             series1.getData().add(data);
         }
-
+        waterBarChart.getData().clear();
         waterBarChart.getData().add(series1);
     }
 
