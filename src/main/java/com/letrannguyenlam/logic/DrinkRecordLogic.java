@@ -1,5 +1,6 @@
 package com.letrannguyenlam.logic;
 
+import com.letrannguyenlam.Main;
 import com.letrannguyenlam.WaterIntake;
 import com.letrannguyenlam.repositories.DrinkRecordRepository;
 import com.letrannguyenlam.repositories.UserRepository;
@@ -130,6 +131,17 @@ public class DrinkRecordLogic {
             if (!resultMap.containsKey(date.toString())) {
                 resultMap.put(date.toString(), this.getWaterAmountDrank(userId, date));
             }
+        }
+
+        return resultMap;
+    }
+
+    public Map<String,Double> getStatisticsByMonths(int userId) {
+        Map<String,Double> resultMap = new HashMap<String,Double>();
+
+        for (int i = 1 ; i<=12;i ++) {
+            var amount = drinkRecordRepository.getAmountByMonth(userId, i);
+            resultMap.put(Integer.toString(i), amount);
         }
 
         return resultMap;

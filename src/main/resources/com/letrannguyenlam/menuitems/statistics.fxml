@@ -21,7 +21,7 @@
                      <font>
                         <Font size="16.0" />
                      </font></Label>
-                  <JFXComboBox fx:id="filterComboBox" labelFloat="true" promptText="Choose a filter type..." onMouseClicked="#onFilterComboBoxMouseClicked">
+                  <JFXComboBox fx:id="filterComboBox" labelFloat="true" promptText="Choose a filter type...">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

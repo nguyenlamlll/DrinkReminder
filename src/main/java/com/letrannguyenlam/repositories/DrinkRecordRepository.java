@@ -3,7 +3,9 @@ package com.letrannguyenlam.repositories;
 import com.letrannguyenlam.repositories.models.DrinkRecord;
 
 import java.sql.*;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class DrinkRecordRepository {
     private JDBCDriver database;
@@ -59,6 +61,32 @@ public class DrinkRecordRepository {
         }
     }
 
+    public double getAmountByMonth(int userId, int month) {
+        try (Connection connection = database.createSQLConnection()) {
+            String query = "SELECT UserId, SUM(sumAmountByDate) AS AmountByMonth FROM (" +
+                    "SELECT UserId, TimeTaken, SUM(Amount) AS sumAmountByDate " +
+                    "FROM dbo.DrinkRecord " +
+                    "WHERE userId = ? " +
+                    "GROUP BY UserId, TimeTaken " +
+                    "HAVING DATEPART(MONTH, TimeTaken) = ?) AS AmountByDate " +
+                    "GROUP BY AmountByDate.UserId";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, userId);
+                statement.setInt(2, month);
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    return resultSet.getDouble("AmountByMonth");
+                }
+
+            }
+            return 0.0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
     public void createDrinkRecord(DrinkRecord record) {
         try (Connection connection = database.createSQLConnection()) {
             String query = "INSERT INTO DrinkRecord (UserId, Amount, TimeTaken)" +
@@ -77,4 +105,6 @@ public class DrinkRecordRepository {
             throw new RuntimeException();
         }
     }
+
+
 }
