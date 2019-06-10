@@ -14,15 +14,23 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="519.0">
+            <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Label text="Input Your Measurement">
+                  <Label text="Welcome to Drink Reminder!">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="Let's set up a few things first">
                      <font>
                         <Font name="Microsoft Sans Serif" size="24.0" />
                      </font>
                   </Label>
                </children>
-            </HBox>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </VBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label alignment="CENTER" prefHeight="29.0" prefWidth="59.0" text="Height">

@@ -43,8 +43,6 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO: Placing this here create a notification each time Home page is loaded.
-        timerNotification();
 
         double currentProgress = drinkRecordLogic.getCurrentProgress(Main.currentSignedInUser);
         waterBar.setProgress(currentProgress);
@@ -106,6 +104,7 @@ public class HomeController implements Initializable {
         }
         catch (AWTException ex) {
             // TODO: Handle the exception
+            ex.printStackTrace();
         }
     }
 
@@ -121,5 +120,42 @@ public class HomeController implements Initializable {
         long delay = 1800000L;
         Timer timer = new Timer("Timer");
         timer.schedule(timerTask, 0, delay);
+    }
+
+    public void remind10MinutesClick(MouseEvent mouseEvent) {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                createNotification();
+            }
+        };
+        long delay = 600000L;
+        Timer timer = new Timer("Timer");
+        timer.schedule(timerTask, delay);
+    }
+
+
+    public void remind30MinutesClick(MouseEvent mouseEvent) {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                createNotification();
+            }
+        };
+        long delay = 1800000L;
+        Timer timer = new Timer("Timer");
+        timer.schedule(timerTask, delay);
+    }
+
+    public void remind15SecondsClick(MouseEvent mouseEvent) {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                createNotification();
+            }
+        };
+        long delay = 15000L;
+        Timer timer = new Timer("Timer");
+        timer.schedule(timerTask, delay);
     }
 }

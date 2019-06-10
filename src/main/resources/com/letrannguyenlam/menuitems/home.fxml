@@ -38,6 +38,7 @@
         </children>
     </VBox>
     <ProgressBar fx:id="waterBar" prefWidth="200.0" progress="0.0" styleClass="green-bar" stylesheets="@../css/progress.css" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="300.0" />
+      <JFXButton fx:id="remind15SecondsButton" layoutX="1030.0" layoutY="558.0" onMouseClicked="#remind15SecondsClick" text="Remind in 15 secs" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="140.0" />
     <JFXButton fx:id="createNotiButton" layoutX="1020.0" layoutY="548.0" onMouseClicked="#createNotification" text="Create Notification" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
       <Label fx:id="homeLabel_01" layoutX="152.0" layoutY="182.0" text="Hi Lam. Let's drink water!!" textFill="WHITE" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="182.0">
          <font>
@@ -49,5 +50,19 @@
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
+      <HBox alignment="CENTER" layoutX="166.0" layoutY="349.0" prefHeight="100.0" prefWidth="400.0" spacing="20.0" AnchorPane.topAnchor="350.0">
+         <children>
+            <JFXButton fx:id="remind10Button" onMouseClicked="#remind10MinutesClick" style="-fx-background-color: white;" text="Remind in 10 minutes">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="remind30Button" onMouseClicked="#remind30MinutesClick" style="-fx-background-color: white;" text="Remind in 30 minutes">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
 </children>
 </AnchorPane>

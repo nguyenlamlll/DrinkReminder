@@ -31,6 +31,7 @@ public class WaterIntake {
 	
 	public double calculateWaterIntake(double weight, int age, int timeworkout)
 	{
+		weight = kiloToPounds(weight);
 		double result;
 		
 		result = weight/2.2;

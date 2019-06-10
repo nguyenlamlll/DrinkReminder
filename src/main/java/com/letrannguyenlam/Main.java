@@ -29,6 +29,7 @@ public class Main extends Application {
 
     // TODO: Implement login and delete this hard-coded number
     public static int currentSignedInUser = 1;
+    public static Boolean isLoggedIn = false;
 
     public static User currentUser;
 
@@ -40,9 +41,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Parent root = null;
+        openLoginForm(primaryStage);
+        if (!isLoggedIn) {
+            return;
+        }
+
         UserRepository userRepository = new UserRepository();
         currentUser = userRepository.getUser(currentSignedInUser);
+        if (currentUser.getWeight() == 0 || currentUser.getHeight() == 0) {
+            openMeasureForm(primaryStage);
+        }
+
+        Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("main.fxml"));
 
@@ -81,9 +91,6 @@ public class Main extends Application {
         });
         minimizeToSystemTray(primaryStage);
 
-        if (currentUser.getWeight()==0 || currentUser.getHeight()==0) {
-            openMeasureForm(primaryStage);
-        }
     }
 
     private void minimizeToSystemTray(Stage primaryStage) {
@@ -151,6 +158,48 @@ public class Main extends Application {
                 public void handle(MouseEvent event) {
                     dialog.setX(event.getScreenX() - xOffset);
                     dialog.setY(event.getScreenY() - yOffset);
+                }
+            });
+
+            dialog.setScene(new Scene(popupTheme));
+            dialog.initOwner(primaryStage);
+            dialog.showAndWait();
+        }
+    }
+
+    private void openLoginForm(Stage primaryStage) {
+        Stage dialog = new Stage();
+        Parent popupTheme = null;
+        try {
+            popupTheme = FXMLLoader.load(getClass().getResource("login.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (popupTheme != null) {
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initStyle(StageStyle.DECORATED);
+
+            popupTheme.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                }
+            });
+
+            popupTheme.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    dialog.setX(event.getScreenX() - xOffset);
+                    dialog.setY(event.getScreenY() - yOffset);
+                }
+            });
+
+            // Didn't log in
+            dialog.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    isLoggedIn = false;
                 }
             });
 

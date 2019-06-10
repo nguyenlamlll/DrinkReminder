@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.awt.geom.Arc2D;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -59,10 +60,14 @@ public class SettingsController implements Initializable {
     private void getPersonalMetrics() {
         var currentUser = userLogic.getUser(Main.currentSignedInUser);
         weightTextField.setText(Double.toString(currentUser.getWeight()));
+        heightTextField.setText(Double.toString(currentUser.getHeight()));
     }
 
     public void onSavePersonalMetricsButtonClick(MouseEvent mouseEvent) {
-        userLogic.updateUser(Main.currentSignedInUser, Double.parseDouble(weightTextField.getText()));
+        userLogic.updateUser(
+                Main.currentSignedInUser,
+                Double.parseDouble(weightTextField.getText()),
+                Double.parseDouble(heightTextField.getText()));
         personalMetricsSaveStatus.setText("Success!");
     }
 }

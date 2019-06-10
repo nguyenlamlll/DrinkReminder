@@ -88,10 +88,13 @@ public class UserRepository {
                     users.add(user);
                 }
             }
+            if (users.size() == 0) {
+                return null;
+            }
             return users.getFirst();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            throw new RuntimeException();
+            return null;
         }
     }
 
