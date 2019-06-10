@@ -26,11 +26,47 @@ public class DrinkRecordLogic {
     }
 
     public double getCurrentProgress(int userId) {
+        java.util.Date today = new java.util.Date(System.currentTimeMillis());
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+
+
+        double currentSumAmmount = this.getWaterAmountDrankToday(userId);
+
+
+        WaterIntake waterIntakeCalculator = new WaterIntake();
+        User currentUser = userRepository.getUser(userId);
+        double waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(
+                currentUser.getWeight(),
+                today.getYear() - currentUser.getDateOfBirth().getYear(), 30);
+        return currentSumAmmount / waterIntakeAmount;
+    }
+
+    public double getAmountLeftOfToday(int userId) {
+        double waterIntakeAmount = this.getWaterIntakeAmount(userId);
+        double waterAmountDrank = this.getWaterAmountDrankToday(userId);
+        double amountLeft = waterIntakeAmount - waterAmountDrank;
+        return amountLeft;
+    }
+
+    public double getWaterIntakeAmount(int userId) {
+        java.util.Date today = new java.util.Date(System.currentTimeMillis());
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+
+        WaterIntake waterIntakeCalculator = new WaterIntake();
+        User currentUser = userRepository.getUser(userId);
+        double waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(
+                currentUser.getWeight(),
+                today.getYear() - currentUser.getDateOfBirth().getYear(), 30);
+        return waterIntakeAmount;
+    }
+
+    public double getWaterAmountDrankToday(int userId) {
         LinkedList<DrinkRecord> drinkRecords = drinkRecordRepository.getDrinkRecords(userId);
 
-//        Calendar today = Calendar.getInstance();
-//        Calendar tomorrow = Calendar.getInstance();
-//        tomorrow.set(Calendar.DAY_OF_MONTH, today.get(Calendar.DAY_OF_MONTH) + 1);
         java.util.Date today = new java.util.Date(System.currentTimeMillis());
         today.setHours(0);
         today.setMinutes(0);
@@ -42,20 +78,11 @@ public class DrinkRecordLogic {
                 drinkRecords.remove(i);
             }
         }
-//        drinkRecords.removeIf(d ->
-//                d.getTimeTaken().before(today.getTime()) || d.getTimeTaken().after(tomorrow.getTime())
-//        );
 
         double currentSumAmmount = 0;
         for(DrinkRecord record: drinkRecords) {
             currentSumAmmount += record.getAmount();
         }
-
-        WaterIntake waterIntakeCalculator = new WaterIntake();
-        User currentUser = userRepository.getUser(2);
-        double waterIntakeAmount = waterIntakeCalculator.calculateWaterIntake(
-                currentUser.getWeight(),
-                today.getYear() - currentUser.getDateOfBirth().getYear(), 30);
-        return currentSumAmmount / waterIntakeAmount;
+        return currentSumAmmount;
     }
 }

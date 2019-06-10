@@ -27,6 +27,9 @@ public class Main extends Application {
 
     public static Boolean isSplashLoaded = false;
 
+    // TODO: Implement login and delete this hard-coded number
+    public static int currentSignedInUser = 1;
+
     public Boolean firstLoaded = true;
 
     private double xOffset = 0, yOffset = 0;
@@ -77,7 +80,7 @@ public class Main extends Application {
         minimizeToSystemTray(primaryStage);
 
         if (firstLoaded) {
-            openMeasureForm(primaryStage);
+            //openMeasureForm(primaryStage);
         }
     }
 

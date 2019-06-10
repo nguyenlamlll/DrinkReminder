@@ -39,9 +39,9 @@
     </VBox>
     <ProgressBar fx:id="waterBar" prefWidth="200.0" progress="0.0" styleClass="green-bar" stylesheets="@../css/progress.css" AnchorPane.bottomAnchor="360.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="300.0" />
     <JFXButton fx:id="createNotiButton" layoutX="1020.0" layoutY="548.0" onMouseClicked="#createNotification" text="Create Notification" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
-      <Label fx:id="homeText" layoutX="178.0" layoutY="215.0" text="Hi Lam. Let's drink water!! 2.5 more liters to go" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="215.0">
+      <Label fx:id="homeLabel" layoutX="178.0" layoutY="215.0" text="Hi Lam. Let's drink water!! 2.5 more liters to go" textFill="WHITE" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="215.0">
          <font>
-            <Font size="28.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Label>
 </children>
