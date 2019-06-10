@@ -1,34 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXToggleButton?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
 
-
-
-
-<AnchorPane prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 5em; -fx-border-radius: 5em;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="727.0" prefWidth="400.0" style="-fx-background-color: #008ECC;">
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="729.0" prefWidth="100.0" style="-fx-background-color: #008ECC;">
          <children>
-            <AnchorPane layoutX="-6.0" layoutY="-5.0" prefHeight="35.0" prefWidth="410.0" style="-fx-background-color: #86d6f9;">
-               <children>
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="17.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/baseline-settings-black-48/2x/baseline_settings_black_48dp.png" />
-                     </image>
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                  </ImageView>
-               </children>
-            </AnchorPane>
+            <ImageView fitHeight="41.0" fitWidth="32.0" layoutX="14.0" layoutY="7.0">
+               <image>
+                  <Image url="@images/imageSetting/icons8-left-filled-50.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="400.0" prefHeight="727.0" prefWidth="400.0" style="-fx-background-color: #86d6f9;" />
+      <AnchorPane layoutX="1100.0" prefHeight="728.0" prefWidth="100.0" style="-fx-background-color: #008ECC;" />
+      <JFXComboBox focusColor="#9397a1" layoutX="820.0" layoutY="121.0" promptText="1 GLASS" unFocusColor="#4e62c7" viewOrder="8.0" />
+      <Label layoutX="330.0" layoutY="191.0" text="SOUND">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="326.0" layoutY="119.0" text="DEFAULT DRINK SIZE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <JFXToggleButton layoutX="806.0" layoutY="316.0" text="ON" toggleColor="#f29933" toggleLineColor="#c2ab78">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXToggleButton>
+      <Label layoutX="334.0" layoutY="264.0" text="AUTO ADD TO HEALTH APP">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <JFXToggleButton layoutX="805.0" layoutY="247.0" text="ON" toggleColor="#f29933" toggleLineColor="#c2ab78">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXToggleButton>
+      <Label layoutX="333.0" layoutY="343.0" text="TRANSFER ALERT ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <JFXToggleButton layoutX="806.0" layoutY="175.0" text="ON" toggleColor="#f29933" toggleLineColor="#c2ab78">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXToggleButton>
+      <Label layoutX="532.0" layoutY="430.0" text="SCREEN BRIGHTNESS ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="173.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/baseline-settings-black-48/2x/baseline_settings_black_48dp.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <Label layoutX="204.0" layoutY="22.0" text="Settings">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <ImageView layoutX="216.0" layoutY="100.0">
+         <image>
+            <Image url="@images/imageSetting/icons8-cafe-50.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="209.0" layoutY="253.0">
+         <image>
+            <Image url="@images/imageSetting/icons8-heart-outline-50.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="216.0" layoutY="178.0">
+         <image>
+            <Image url="@images/imageSetting/icons8-audio-50.png" />
+         </image>
+      </ImageView>
+      <ImageView layoutX="209.0" layoutY="329.0">
+         <image>
+            <Image url="@images/imageSetting/icons8-upload-50.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="295.0" layoutY="404.0" prefHeight="0.0" prefWidth="634.0" style="-fx-background-color: #444242;" />
+      <JFXSlider layoutX="292.0" layoutY="478.0" prefHeight="18.0" prefWidth="644.0" style="-fx-background-color: #ffffff;" />
+      <JFXCheckBox checkedColor="#352ec6" graphicTextGap="10.0" layoutX="294.0" layoutY="524.0" style="-fx-background-size: 15;" text="Auto Brightness">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXButton layoutX="729.0" layoutY="612.0" prefHeight="46.0" prefWidth="204.0" style="-fx-background-color: #eda678; -fx-border-radius: 50px; -fx-background-radius: 50px;" text="Save">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="290.0" layoutY="613.0" prefHeight="46.0" prefWidth="204.0" style="-fx-background-color: #eda678; -fx-border-radius: 50px; -fx-background-radius: 50px;" text="Cancel">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

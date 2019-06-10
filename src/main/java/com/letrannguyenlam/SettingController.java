@@ -2,6 +2,7 @@ package com.letrannguyenlam;
 
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.letrannguyenlam.services.TrayService;
@@ -31,6 +32,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 public class SettingController implements Initializable {
+    private double xOffset= 0;
+    private double yOffset = 0;
+
 
     @FXML
     private JFXToggleButton toggleButton;
@@ -61,27 +65,26 @@ public class SettingController implements Initializable {
     public void start( Stage stage ) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("setting.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset =  event.getSceneX();
+                yOffset =  event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getSceneX() - xOffset);
+                stage.setY(event.getScreenY()- yOffset);
+            }
+        });
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
     }
-
-    @FXML
-    private void changeColor(ActionEvent event) {
-        JFXButton btn = (JFXButton) event.getSource();
-        System.out.println(btn.getText());
-        switch (btn.getText()) {
-            case "Color 1":
-                callback.updateColor("#00FF00");
-                break;
-            case "Color 2":
-                callback.updateColor("#0000FF");
-                break;
-            case "Color 3":
-                callback.updateColor("#FF0000");
-                break;
-        }
-    }
-
+    
     @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
