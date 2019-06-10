@@ -9,6 +9,8 @@ public class User {
     private String name;
     private Date DateOfBirth;
     private double weight;
+    private double height;
+    private int workoutTime;
 
     public int getId() {
         return Id;
@@ -52,20 +54,41 @@ public class User {
         this.weight = weight;
     }
 
-    public User(int id, String username, String password, String name, Date dateOfBirth, double weight) {
+    public int getWorkoutTime() {
+        return workoutTime;
+    }
+
+    public void setWorkoutTime(int workoutTime) {
+        this.workoutTime = workoutTime;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public User(int id, String username, String password, String name, Date dateOfBirth, double weight, double height, int workoutTime) {
         Id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         DateOfBirth = dateOfBirth;
         this.weight = weight;
+        this.height = height;
+        this.workoutTime = workoutTime;
     }
 
-    public User(String username, String password, String name, Date dateOfBirth, double weight) {
+    public User(String username, String password, String name, Date dateOfBirth, double weight, double height, int workoutTime) {
         this.username = username;
         this.password = password;
         this.name = name;
         DateOfBirth = dateOfBirth;
         this.weight = weight;
+        this.height = height;
+        this.workoutTime = workoutTime;
     }
+
 }

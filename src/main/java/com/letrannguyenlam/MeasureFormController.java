@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
+import com.letrannguyenlam.repositories.UserRepository;
+import com.letrannguyenlam.repositories.models.User;
 import com.letrannguyenlam.services.TrayService;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.FloatControl;
 import java.awt.*;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -24,6 +27,7 @@ public class MeasureFormController implements Initializable {
 
     public static final double KGTOPOUND = 2.20462262;
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.##");
+    private UserRepository userRepository = new UserRepository();
 
     @FXML
     private Slider height_slider;
@@ -62,10 +66,10 @@ public class MeasureFormController implements Initializable {
         weight_txt.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                int value = 1997;
+                double value = 1997;
                 try
                 {
-                   value = Integer.parseInt(newValue);
+                   value = Double.parseDouble(newValue);
                 }catch (NumberFormatException e) {
 
                 }
@@ -84,13 +88,17 @@ public class MeasureFormController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if (weight_txt.validate()) {
-                    TrayService trayService = new TrayService("Popup Value", "height: "+DECIMAL_FORMAT.format(height_slider.getValue()) +"\nweight: "+weight_txt.getText(), TrayIcon.MessageType.NONE);
+                    TrayService trayService = new TrayService("Update Value", "height: "+DECIMAL_FORMAT.format(height_slider.getValue()) +"\nweight: "+weight_txt.getText(), TrayIcon.MessageType.NONE);
                     try {
                         trayService.displayTray();
                     }
                     catch (AWTException ex) {
                         // TODO: Handle the exception
                     }
+                    User updatedUser = Main.currentUser;
+                    updatedUser.setHeight(height_slider.getValue());
+                    updatedUser.setWeight(Double.parseDouble(weight_txt.getText()));
+                    userRepository.updateUser(updatedUser);
                     Stage popup = (Stage) submit_btn.getScene().getWindow();
                     popup.close();
 

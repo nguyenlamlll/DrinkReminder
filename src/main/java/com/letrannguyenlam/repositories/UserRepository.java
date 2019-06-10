@@ -19,8 +19,8 @@ public class UserRepository {
 
     public void createUser(User user) {
         try (Connection connection = database.createSQLConnection()) {
-            String query = "INSERT INTO [User] (Username, Password, Name, DateOfBirth, Weight) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO [User] (Username, Password, Name, DateOfBirth, Weight, Height, WorkoutTime) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, user.getUsername());
@@ -28,6 +28,8 @@ public class UserRepository {
                 statement.setString(3, user.getName());
                 statement.setDate(4, user.getDateOfBirth());
                 statement.setDouble(5, user.getWeight());
+                statement.setDouble(6, user.getHeight());
+                statement.setInt(7, user.getWorkoutTime());
 
                 int returnToken = statement.executeUpdate();
             }
@@ -44,7 +46,7 @@ public class UserRepository {
 
         try (Connection connection = database.createSQLConnection()) {
             String query = "UPDATE [User] " +
-                    "SET Username = ?, Password = ?, Name = ?, DateOfBirth = ?, Weight = ? " +
+                    "SET Username = ?, Password = ?, Name = ?, DateOfBirth = ?, Weight = ?, Height = ?, WorkoutTime = ? " +
                     "WHERE Id = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -53,7 +55,9 @@ public class UserRepository {
                 statement.setString(3, user.getName());
                 statement.setDate(4, user.getDateOfBirth());
                 statement.setDouble(5, user.getWeight());
-                statement.setInt(6, user.getId());
+                statement.setDouble(6, user.getHeight());
+                statement.setInt(7, user.getWorkoutTime());
+                statement.setInt(8, user.getId());
 
                 int returnToken = statement.executeUpdate();
             }
@@ -77,7 +81,9 @@ public class UserRepository {
                             resultSet.getString("Password"),
                             resultSet.getString("Name"),
                             resultSet.getDate("DateOfBirth"),
-                            resultSet.getDouble("Weight")
+                            resultSet.getDouble("Weight"),
+                            resultSet.getDouble("Height"),
+                            resultSet.getInt("WorkoutTime")
                             );
                     users.add(user);
                 }
@@ -103,7 +109,9 @@ public class UserRepository {
                             resultSet.getString("Password"),
                             resultSet.getString("Name"),
                             resultSet.getDate("DateOfBirth"),
-                            resultSet.getDouble("Weight")
+                            resultSet.getDouble("Weight"),
+                            resultSet.getDouble("Height"),
+                            resultSet.getInt("WorkoutTime")
                     );
                     users.add(user);
                 }
