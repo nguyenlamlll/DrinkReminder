@@ -30,7 +30,7 @@ public class Main extends Application {
     // TODO: Implement login and delete this hard-coded number
     public static int currentSignedInUser = 1;
 
-    public Boolean firstLoaded = true;
+    public static User currentUser;
 
     private double xOffset = 0, yOffset = 0;
 
@@ -41,6 +41,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Parent root = null;
+        UserRepository userRepository = new UserRepository();
+        currentUser = userRepository.getUser(currentSignedInUser);
         try {
             root = FXMLLoader.load(getClass().getResource("main.fxml"));
 
@@ -79,8 +81,8 @@ public class Main extends Application {
         });
         minimizeToSystemTray(primaryStage);
 
-        if (firstLoaded) {
-            //openMeasureForm(primaryStage);
+        if (currentUser.getWeight()==0 || currentUser.getHeight()==0) {
+            openMeasureForm(primaryStage);
         }
     }
 
@@ -156,7 +158,6 @@ public class Main extends Application {
             dialog.initOwner(primaryStage);
             dialog.showAndWait();
         }
-        firstLoaded = false;
     }
 }
 

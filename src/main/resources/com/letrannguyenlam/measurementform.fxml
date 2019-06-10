@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -34,14 +33,11 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="height_slider" max="250.0" min="130.0" prefHeight="0.0" prefWidth="434.0" showTickLabels="true" showTickMarks="true" value="130.0">
+                  <JFXSlider fx:id="height_slider" majorTickUnit="10.0" max="250.0" min="130.0" minorTickCount="5" prefHeight="38.0" prefWidth="440.0" showTickLabels="true" showTickMarks="true" value="130.0">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Slider>
+                  </JFXSlider>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
