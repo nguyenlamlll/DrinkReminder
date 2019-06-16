@@ -112,7 +112,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Text>
-                              <JFXButton style="-fx-background-color: #d4d6d8;" text="Reset" VBox.vgrow="ALWAYS">
+                              <JFXButton fx:id="resetButton" onMouseClicked="#resetButtonClick" style="-fx-background-color: #d4d6d8;" text="Reset" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

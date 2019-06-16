@@ -39,8 +39,10 @@ public class Main extends Application {
         launch(args);
     }
 
+    private static Stage mainStage;
     @Override
     public void start(Stage primaryStage) {
+        mainStage = primaryStage;
         openLoginForm(primaryStage);
         if (!isLoggedIn) {
             return;
@@ -80,6 +82,11 @@ public class Main extends Application {
         eventBinder(primaryStage);
     }
 
+    public static void minimizeWindow() {
+        Platform.setImplicitExit(false);
+        mainStage.hide();
+
+    }
     private void eventBinder(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override

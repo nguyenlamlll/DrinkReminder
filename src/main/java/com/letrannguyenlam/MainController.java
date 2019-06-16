@@ -112,14 +112,29 @@ public class MainController implements Initializable {
         for (Node node : box.getChildren()) {
             node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e) -> {
                 switch (node.getId()) {
-                    case "home_btn": case "homeIconButton":
+                    case "home_btn":
+                    case "homeIconButton":
                         loadHome();
                         break;
-                    case "statistics_btn": case "statisticsIconButton":
+                    case "statistics_btn":
+                    case "statisticsIconButton":
                         loadStatistics();
                         break;
-                    case "setting_btn": case "settingsIconButton":
+                    case "setting_btn":
+                    case "settingsIconButton":
                         loadSettings();
+                        break;
+                    case "exit_btn":
+                    case "exitIconButton":
+                        SystemTray tray = SystemTray.getSystemTray();
+                        for (TrayIcon icon : tray.getTrayIcons()) {
+                            tray.remove(icon);
+                        }
+                        System.exit(0);
+                        break;
+                    case "minimize_btn":
+                    case "minimizeIconButton":
+                        Main.minimizeWindow();
                         break;
                 }
             });
@@ -164,6 +179,7 @@ public class MainController implements Initializable {
     }
 
     private long myLong = randomLong(30000L, 600000L);
+
     public void createRandomDrinkReminder() {
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -174,8 +190,7 @@ public class MainController implements Initializable {
                         TrayIcon.MessageType.NONE);
                 try {
                     trayService.displayTray();
-                }
-                catch (AWTException ex) {
+                } catch (AWTException ex) {
                     // TODO: Handle the exception
                     ex.printStackTrace();
                 }

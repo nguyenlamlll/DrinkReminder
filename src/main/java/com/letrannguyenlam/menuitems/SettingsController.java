@@ -70,4 +70,12 @@ public class SettingsController implements Initializable {
                 Double.parseDouble(heightTextField.getText()));
         personalMetricsSaveStatus.setText("Success!");
     }
+
+    public void resetButtonClick(MouseEvent mouseEvent) {
+        deleteAllDataInLocalDatabase();
+    }
+
+    private void deleteAllDataInLocalDatabase() {
+
+    }
 }
